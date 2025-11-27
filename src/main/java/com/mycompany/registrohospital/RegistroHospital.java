@@ -11,6 +11,7 @@ package com.mycompany.registrohospital;
 public class RegistroHospital {
 
     public static void main(String[] args) {
+        System.out.println("Pan de miga");
         System.out.println("Hello World!");
         System.out.println("Hello World!");
     }

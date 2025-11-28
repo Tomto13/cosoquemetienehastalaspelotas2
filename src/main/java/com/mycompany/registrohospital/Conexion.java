@@ -53,5 +53,64 @@ public class Conexion {
             }
         }
     }
+    public static boolean eliminar(String rut) {
+    String sql = "DELETE FROM pacientes WHERE rut = ?";
+
+    try (Connection con = conectar();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+        
+        ps.setString(1, rut);
+
+        int filas = ps.executeUpdate();
+
+        if (filas > 0) {
+            System.out.println("Paciente eliminado correctamente");
+            return true;
+        } else {
+            System.out.println("No se encontró un paciente con ese RUT");
+            return false;
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error eliminando paciente: " + e.getMessage());
+        return false;
+    }
+}
+    public static boolean actualizar(Pacientes pa) {
+    String sql = "UPDATE pacientes SET nombre=?, apellido=?, edad=?, motivo_consulta=?, "
+               + "fecha_ingreso=?, pasillo=?, estado=?, comentarios=?, contraseña=? "
+               + "WHERE rut=?";
+
+    try (Connection con = conectar();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        ps.setString(1, pa.getNombre());
+        ps.setString(2, pa.getApellido());
+        ps.setInt(3, pa.getEdad());
+        ps.setString(4, pa.getMotivo_consulta());
+        ps.setString(5, pa.getFecha());
+        ps.setString(6, pa.getPasillo());
+        ps.setString(7, pa.getEstado());
+        ps.setString(8, pa.getComentarios());
+        ps.setString(9, pa.getContrasena());       
+        ps.setString(10, pa.getRut()); // <- se actualiza por RUT
+
+        int filas = ps.executeUpdate();
+
+        if (filas > 0) {
+            System.out.println("Paciente actualizado correctamente");
+            return true;
+        } else {
+            System.out.println("No se encontró un paciente con ese RUT");
+            return false;
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error actualizando paciente: " + e.getMessage());
+        return false;
+    }
+    }
+
+
     
 }

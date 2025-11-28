@@ -4,6 +4,8 @@
  */
 package com.mycompany.registrohospital;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Legion
@@ -28,57 +30,98 @@ public class Pantalla extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Menu = new javax.swing.JFrame();
+        btnModificar = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
+        btnVer = new javax.swing.JButton();
+        Ficha = new javax.swing.JFrame();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
-        txtContra = new javax.swing.JTextField();
-        btnIniciar = new javax.swing.JButton();
+        txtrut = new javax.swing.JTextField();
+        txtcontra = new javax.swing.JTextField();
+        btniniciar = new javax.swing.JButton();
+
+        Menu.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnModificar.setText("Modificara Datos de Paciente");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+        Menu.getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 294, -1));
+
+        btnAgregar.setText("Agregar Paciente");
+        Menu.getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 294, -1));
+
+        btnVer.setText("Ver Datos de Paciente");
+        btnVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerActionPerformed(evt);
+            }
+        });
+        Menu.getContentPane().add(btnVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 294, -1));
+
+        Ficha.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Usuario");
+        jLabel1.setText("Rut");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
 
         jLabel2.setText("Contraseña");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+        txtrut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
+                txtrutActionPerformed(evt);
             }
         });
-        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 180, -1));
+        getContentPane().add(txtrut, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 180, -1));
 
-        txtContra.addActionListener(new java.awt.event.ActionListener() {
+        txtcontra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContraActionPerformed(evt);
+                txtcontraActionPerformed(evt);
             }
         });
-        getContentPane().add(txtContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 180, -1));
+        getContentPane().add(txtcontra, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 180, -1));
 
-        btnIniciar.setText("Iniciar Sesión");
-        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
+        btniniciar.setText("Iniciar Sesión");
+        btniniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIniciarActionPerformed(evt);
+                btniniciarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
+        getContentPane().add(btniniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+    private void txtrutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrutActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
+    }//GEN-LAST:event_txtrutActionPerformed
 
-    private void txtContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraActionPerformed
+    private void txtcontraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtContraActionPerformed
+    }//GEN-LAST:event_txtcontraActionPerformed
 
-    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+    private void btniniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btniniciarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnIniciarActionPerformed
+        String usuario= txtrut.getText();
+        String contrasena= txtcontra.getText();
+        if (usuario.isEmpty() || contrasena.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Un campo esta vacio", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btniniciarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -106,10 +149,15 @@ public class Pantalla extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIniciar;
+    private javax.swing.JFrame Ficha;
+    private javax.swing.JFrame Menu;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnVer;
+    private javax.swing.JButton btniniciar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField txtContra;
-    private javax.swing.JTextField txtUsuario;
+    private javax.swing.JTextField txtcontra;
+    private javax.swing.JTextField txtrut;
     // End of variables declaration//GEN-END:variables
 }

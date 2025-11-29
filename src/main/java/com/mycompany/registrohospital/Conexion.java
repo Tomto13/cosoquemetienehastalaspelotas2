@@ -24,6 +24,9 @@ public class Conexion {
         }
         return con;}
     
+    
+    //Se uso Chatgt para reutilizar un codigo antiguo, y adaptarlo a lo que necesito
+    //En esencia en el INSERT INTO para evitar ponerlos en un otrden erroneo
     public static void insertar(Pacientes pa){
         Connection con = conectar();
         PreparedStatement ps=null;
@@ -76,6 +79,8 @@ public class Conexion {
         return false;
     }
 }
+    
+    // Se utulizo Chatgpt para adaptar codigo antiguo a uno utilizable para este metodo
     public static boolean actualizar(Pacientes pa) {
     String sql = "UPDATE pacientes SET nombre=?, apellido=?, edad=?, motivo_consulta=?, "
                + "fecha_ingreso=?, pasillo=?, estado=?, comentarios=?, contraseña=? "
@@ -110,6 +115,7 @@ public class Conexion {
         return false;
     }
     }
+    
 
 
     

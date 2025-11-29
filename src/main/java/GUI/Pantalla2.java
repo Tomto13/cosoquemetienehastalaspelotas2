@@ -43,6 +43,7 @@ public void agregar(){
         }
         else if (rbB.isSelected()){
             pasillo="A";
+         
             
         }
         else{

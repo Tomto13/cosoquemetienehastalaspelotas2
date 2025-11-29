@@ -80,7 +80,7 @@ public class Conexion {
     }
 }
     
-    // Se utulizo Chatgpt para adaptar codigo antiguo a uno utilizable para este metodo
+    // Se utulizo Chatgpt para adaptar codigo antiguo a uno utilizable para este 
     public static boolean actualizar(Pacientes pa) {
     String sql = "UPDATE pacientes SET nombre=?, apellido=?, edad=?, motivo_consulta=?, "
                + "fecha_ingreso=?, pasillo=?, estado=?, comentarios=?, contraseña=? "
@@ -116,7 +116,5 @@ public class Conexion {
     }
     }
     
-
-
     
 }

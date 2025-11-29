@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package GUI;
-import com.mycompany.registrohospital.Conexion;
+package main.java.GUI;
+import com.mycompany.registrohospital.Usuarios;
 import com.mycompany.registrohospital.Pacientes;
+import com.mycompany.registrohospital.Conexion;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -42,7 +43,7 @@ public void agregar(){
             pasillo="A";
         }
         else if (rbB.isSelected()){
-            pasillo="A";
+            pasillo="B";
          
             
         }
@@ -50,7 +51,7 @@ public void agregar(){
             javax.swing.JOptionPane.showMessageDialog(this, "Complete el campo nombre","Error", JOptionPane.WARNING_MESSAGE);
         }
         String estado=cboxEstado.getSelectedItem().toString();
-        String pass=txtPass.getText();
+        String pass=txtPassP.getText();
         Pacientes pa = new Pacientes(rut, nombre, apellido, edad, motivo, fecha, pasillo, estado, pass);
         
         Conexion co = new Conexion();
@@ -168,8 +169,10 @@ public void agregar(){
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pasilllo"));
 
+        pasillos.add(rbA);
         rbA.setText("Pasillo A");
 
+        pasillos.add(rbB);
         rbB.setText("Pasillo B");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -193,10 +196,16 @@ public void agregar(){
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
-        RegistroPacientes.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 260, 60));
+        RegistroPacientes.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 260, 60));
 
         cboxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dado de alta", "En riesgo", "Estado crítico" }));
         RegistroPacientes.getContentPane().add(cboxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, -1));
+
+        txtPassP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassPActionPerformed(evt);
+            }
+        });
         RegistroPacientes.getContentPane().add(txtPassP, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 400, 71, -1));
 
         jLabel5.setText("Rut");
@@ -296,6 +305,10 @@ public void agregar(){
     private void txtRutPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutPacienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRutPacienteActionPerformed
+
+    private void txtPassPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPassPActionPerformed
 
     /**
      * @param args the command line arguments

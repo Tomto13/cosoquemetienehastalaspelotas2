@@ -35,6 +35,56 @@ public class Pantalla extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnVer = new javax.swing.JButton();
         Ficha = new javax.swing.JFrame();
+        rut = new javax.swing.JLabel();
+        txt_rut = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
+        comboEstado = new javax.swing.JComboBox<>();
+        Nuevo = new javax.swing.JFrame();
+        rut_n = new javax.swing.JLabel();
+        txtrut_n = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jTextField10 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jTextField11 = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel17 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel18 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jTextField12 = new javax.swing.JTextField();
+        Visualizar = new javax.swing.JFrame();
+        jLabel19 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jTextField13 = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        Eliminar = new javax.swing.JFrame();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtRut = new javax.swing.JTextField();
@@ -63,6 +113,138 @@ public class Pantalla extends javax.swing.JFrame {
         Menu.getContentPane().add(btnVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 294, -1));
 
         Ficha.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        rut.setText("Rut:");
+        Ficha.getContentPane().add(rut, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+
+        txt_rut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_rutActionPerformed(evt);
+            }
+        });
+        Ficha.getContentPane().add(txt_rut, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 230, -1));
+
+        jLabel3.setText("Nombre:");
+        Ficha.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+        Ficha.getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 230, -1));
+
+        jLabel4.setText("Apellido:");
+        Ficha.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
+
+        jLabel5.setText("Edad:");
+        Ficha.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
+
+        jLabel6.setText("Motivo Consulta:");
+        Ficha.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+
+        jLabel7.setText("Fecha Ingreso:");
+        Ficha.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+
+        jLabel8.setText("Pasillo:");
+        Ficha.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+
+        jLabel9.setText("Estado:");
+        Ficha.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+
+        jLabel10.setText("Comentarios:");
+        Ficha.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
+        Ficha.getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 230, -1));
+        Ficha.getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 40, -1));
+        Ficha.getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 230, -1));
+        Ficha.getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 230, -1));
+        Ficha.getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 230, -1));
+
+        jTextField7.setText("Caja grande de texto con scroll");
+        Ficha.getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, -1, -1));
+
+        comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dado de alta", "En Riesgo", "Estado critico" }));
+        Ficha.getContentPane().add(comboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, -1, -1));
+
+        Nuevo.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        rut_n.setText("Rut");
+        Nuevo.getContentPane().add(rut_n, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, 20));
+        Nuevo.getContentPane().add(txtrut_n, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 210, -1));
+
+        jLabel11.setText("Nombre");
+        Nuevo.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
+        Nuevo.getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 210, -1));
+
+        jLabel12.setText("Apellido");
+        Nuevo.getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+        Nuevo.getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 210, -1));
+
+        jLabel13.setText("Edad");
+        Nuevo.getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+        Nuevo.getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 40, -1));
+
+        jLabel14.setText("Fecha Ingreso:");
+        Nuevo.getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, -1, -1));
+
+        jLabel15.setText("Motivo consulta");
+        Nuevo.getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        Nuevo.getContentPane().add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 210, -1));
+
+        jLabel16.setText("Pasillo");
+        Nuevo.getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pasillo A", "Pasillo B" }));
+        Nuevo.getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, -1, -1));
+
+        jLabel17.setText("Estado");
+        Nuevo.getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dado de alta", "en riesgo", "Estado critico" }));
+        Nuevo.getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+
+        jLabel18.setText("Contraseña");
+        Nuevo.getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
+
+        jPasswordField1.setText("jPasswordField1");
+        Nuevo.getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, -1, -1));
+        Nuevo.getContentPane().add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, 80, -1));
+
+        Visualizar.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel19.setText("Pasillo:");
+        Visualizar.getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Visualizar.getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, -1, -1));
+
+        jLabel20.setText("Buscar:");
+        Visualizar.getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, -1, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "RUT", "Nombre", "Apellido", "Edad", "Motivo", "Fecha de Ingreso", "Pasillo", "Estado", "Comentarios"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        Visualizar.getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 820, 240));
+        Visualizar.getContentPane().add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, -1, -1));
+
+        jButton4.setText("Buscar");
+        Visualizar.getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, -1, -1));
+
+        jButton5.setText("Ver ficha");
+        Visualizar.getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, -1, -1));
+
+        jButton6.setText("Editar");
+        Visualizar.getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 440, -1, -1));
+
+        jButton7.setText("Eliminar");
+        Visualizar.getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 440, -1, -1));
+
+        jButton8.setText("Actualizar");
+        Visualizar.getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 440, -1, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -123,6 +305,10 @@ public class Pantalla extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVerActionPerformed
 
+    private void txt_rutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_rutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_rutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -149,15 +335,65 @@ public class Pantalla extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame Eliminar;
     private javax.swing.JFrame Ficha;
     private javax.swing.JFrame Menu;
+    private javax.swing.JFrame Nuevo;
+    private javax.swing.JFrame Visualizar;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnIniciar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnVer;
+    private javax.swing.JComboBox<String> comboEstado;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
+    private javax.swing.JTextField jTextField13;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel rut;
+    private javax.swing.JLabel rut_n;
     private javax.swing.JTextField txtContra;
     private javax.swing.JTextField txtRut;
+    private javax.swing.JTextField txt_rut;
+    private javax.swing.JTextField txtrut_n;
     // End of variables declaration//GEN-END:variables
 }

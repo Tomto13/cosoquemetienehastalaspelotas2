@@ -43,6 +43,7 @@ public void agregar(){
         }
         else if (rbB.isSelected()){
             pasillo="A";
+            
         }
         else{
             javax.swing.JOptionPane.showMessageDialog(this, "Complete el campo nombre","Error", JOptionPane.WARNING_MESSAGE);

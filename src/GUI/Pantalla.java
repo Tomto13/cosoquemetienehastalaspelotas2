@@ -95,37 +95,6 @@ public void agregar(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Nuevo = new javax.swing.JFrame();
-        rut_n = new javax.swing.JLabel();
-        txtrut_n = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel17 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel18 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jTextField12 = new javax.swing.JTextField();
-        Visualizar = new javax.swing.JFrame();
-        jLabel19 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jLabel20 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField13 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
         Modificar = new javax.swing.JFrame();
         jLabel25 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
@@ -166,12 +135,14 @@ public void agregar(){
         jLabelPasillo = new javax.swing.JLabel();
         jLabelEstado = new javax.swing.JLabel();
         jLabelComentarios = new javax.swing.JLabel();
+        btnCerrarS = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
         Eliminar = new javax.swing.JFrame();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         txtRutEliminar = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnEliminarP = new javax.swing.JButton();
+        btnCerrarEliminar = new javax.swing.JButton();
         RegistroPacientes = new javax.swing.JFrame();
         txtNombreP = new javax.swing.JTextField();
         txtApellidoP = new javax.swing.JTextField();
@@ -198,7 +169,7 @@ public void agregar(){
         txtComentarios = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
         Buscar2 = new javax.swing.JFrame();
-        jButton9 = new javax.swing.JButton();
+        btnBuscar2 = new javax.swing.JButton();
         txtRutBuscar1 = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
@@ -215,9 +186,6 @@ public void agregar(){
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
         LoginEncargados = new javax.swing.JFrame();
         jLabel2 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
@@ -225,6 +193,7 @@ public void agregar(){
         txtPass = new javax.swing.JTextField();
         txtRut = new javax.swing.JTextField();
         btnLoginE = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         LoginPacientes = new javax.swing.JFrame();
         txtRutPaciente = new javax.swing.JTextField();
         txtPassPaciente = new javax.swing.JTextField();
@@ -232,97 +201,12 @@ public void agregar(){
         jLabel48 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
         btnLoginP = new javax.swing.JButton();
+        btnCerrar2 = new javax.swing.JButton();
         grupomodificado = new javax.swing.ButtonGroup();
         grupoorigen = new javax.swing.ButtonGroup();
         cboxUsuario = new javax.swing.JComboBox<>();
         btnentrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-
-        Nuevo.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        rut_n.setText("Rut");
-        Nuevo.getContentPane().add(rut_n, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, 20));
-        Nuevo.getContentPane().add(txtrut_n, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 210, -1));
-
-        jLabel11.setText("Nombre");
-        Nuevo.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
-        Nuevo.getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 210, -1));
-
-        jLabel12.setText("Apellido");
-        Nuevo.getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
-        Nuevo.getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 210, -1));
-
-        jLabel13.setText("Edad");
-        Nuevo.getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
-        Nuevo.getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 40, -1));
-
-        jLabel14.setText("Fecha Ingreso:");
-        Nuevo.getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, -1, -1));
-
-        jLabel15.setText("Motivo consulta");
-        Nuevo.getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
-        Nuevo.getContentPane().add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 210, -1));
-
-        jLabel16.setText("Pasillo");
-        Nuevo.getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pasillo A", "Pasillo B" }));
-        Nuevo.getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, -1, -1));
-
-        jLabel17.setText("Estado");
-        Nuevo.getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dado de alta", "en riesgo", "Estado critico" }));
-        Nuevo.getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
-
-        jLabel18.setText("Contraseña");
-        Nuevo.getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
-
-        jPasswordField1.setText("jPasswordField1");
-        Nuevo.getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, -1, -1));
-        Nuevo.getContentPane().add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, 80, -1));
-
-        Visualizar.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel19.setText("Pasillo:");
-        Visualizar.getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        Visualizar.getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, -1, -1));
-
-        jLabel20.setText("Buscar:");
-        Visualizar.getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, -1, -1));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "RUT", "Nombre", "Apellido", "Edad", "Motivo", "Fecha de Ingreso", "Pasillo", "Estado", "Comentarios"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        Visualizar.getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 820, 240));
-        Visualizar.getContentPane().add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, -1, -1));
-
-        jButton4.setText("Buscar");
-        Visualizar.getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, -1, -1));
-
-        jButton5.setText("Ver ficha");
-        Visualizar.getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, -1, -1));
-
-        jButton6.setText("Editar");
-        Visualizar.getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 440, -1, -1));
-
-        jButton7.setText("Eliminar");
-        Visualizar.getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 440, -1, -1));
-
-        jButton8.setText("Actualizar");
-        Visualizar.getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 440, -1, -1));
 
         Modificar.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -432,58 +316,70 @@ public void agregar(){
         Ficha.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         rut.setText("Rut:");
-        Ficha.getContentPane().add(rut, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+        Ficha.getContentPane().add(rut, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
 
         jLabel3.setText("Nombre:");
-        Ficha.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+        Ficha.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
         jLabel4.setText("Apellido:");
-        Ficha.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
+        Ficha.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
         jLabel5.setText("Edad:");
-        Ficha.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
+        Ficha.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
         jLabel6.setText("Motivo Consulta:");
-        Ficha.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+        Ficha.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
 
         jLabel7.setText("Fecha Ingreso:");
-        Ficha.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+        Ficha.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
 
         jLabel8.setText("Pasillo:");
-        Ficha.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        Ficha.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
 
         jLabel9.setText("Estado:");
-        Ficha.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+        Ficha.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
 
         jLabel10.setText("Comentarios:");
-        Ficha.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
+        Ficha.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
 
         jLabelNombre.setText("jLabel36");
-        Ficha.getContentPane().add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, -1));
+        Ficha.getContentPane().add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
 
         jLabelRut.setText("jLabel40");
-        Ficha.getContentPane().add(jLabelRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
+        Ficha.getContentPane().add(jLabelRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, -1, -1));
 
         jLabelApellido.setText("jLabel40");
-        Ficha.getContentPane().add(jLabelApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
+        Ficha.getContentPane().add(jLabelApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
 
         jLabelEdad.setText("jLabel40");
-        Ficha.getContentPane().add(jLabelEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, -1, -1));
+        Ficha.getContentPane().add(jLabelEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
 
         jLabelMotivo.setText("jLabel40");
-        Ficha.getContentPane().add(jLabelMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, -1, -1));
+        Ficha.getContentPane().add(jLabelMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
 
         jLabelFecha.setText("jLabel40");
-        Ficha.getContentPane().add(jLabelFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, -1, -1));
+        Ficha.getContentPane().add(jLabelFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
 
         jLabelPasillo.setText("jLabel40");
-        Ficha.getContentPane().add(jLabelPasillo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, -1, -1));
+        Ficha.getContentPane().add(jLabelPasillo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, -1, -1));
 
         jLabelEstado.setText("jLabel40");
-        Ficha.getContentPane().add(jLabelEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, -1, -1));
+        Ficha.getContentPane().add(jLabelEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, -1, -1));
 
         jLabelComentarios.setText("jLabel40");
-        Ficha.getContentPane().add(jLabelComentarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
+        Ficha.getContentPane().add(jLabelComentarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, -1, -1));
+
+        btnCerrarS.setText("Cerrar");
+        btnCerrarS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSActionPerformed(evt);
+            }
+        });
+        Ficha.getContentPane().add(btnCerrarS, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        jLabel11.setText("FICHA");
+        Ficha.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
         Eliminar.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -495,21 +391,21 @@ public void agregar(){
         Eliminar.getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
         Eliminar.getContentPane().add(txtRutEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 190, -1));
 
-        jButton2.setText("Eliminar Paciente");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminarP.setText("Eliminar Paciente");
+        btnEliminarP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnEliminarPActionPerformed(evt);
             }
         });
-        Eliminar.getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
+        Eliminar.getContentPane().add(btnEliminarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
 
-        jButton3.setText("Cancelar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrarEliminar.setText("Cancelar");
+        btnCerrarEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnCerrarEliminarActionPerformed(evt);
             }
         });
-        Eliminar.getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, -1, -1));
+        Eliminar.getContentPane().add(btnCerrarEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, -1, -1));
 
         RegistroPacientes.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         RegistroPacientes.getContentPane().add(txtNombreP, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 160, -1));
@@ -535,7 +431,7 @@ public void agregar(){
                 .addComponent(rbA, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(rbB, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -544,7 +440,7 @@ public void agregar(){
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbA)
                     .addComponent(rbB))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         RegistroPacientes.getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 260, 60));
@@ -611,13 +507,13 @@ public void agregar(){
 
         Buscar2.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton9.setText("Buscar");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar2.setText("Buscar");
+        btnBuscar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                btnBuscar2ActionPerformed(evt);
             }
         });
-        Buscar2.getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 97, -1));
+        Buscar2.getContentPane().add(btnBuscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 97, -1));
         Buscar2.getContentPane().add(txtRutBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 200, -1));
 
         jLabel40.setText("Ingrese Rut");
@@ -695,15 +591,6 @@ public void agregar(){
         });
         Menu.getContentPane().add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 140, 20));
 
-        jLabel23.setText("Listo");
-        Menu.getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 60, 20));
-
-        jLabel24.setText("Listo");
-        Menu.getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 40, -1));
-
-        jLabel37.setText("Listo");
-        Menu.getContentPane().add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 40, 20));
-
         LoginEncargados.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Rut");
@@ -723,7 +610,15 @@ public void agregar(){
                 btnLoginEActionPerformed(evt);
             }
         });
-        LoginEncargados.getContentPane().add(btnLoginE, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, -1, -1));
+        LoginEncargados.getContentPane().add(btnLoginE, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, -1, -1));
+
+        jButton4.setText("Cerrar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        LoginEncargados.getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
 
         LoginPacientes.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -757,7 +652,15 @@ public void agregar(){
                 btnLoginPActionPerformed(evt);
             }
         });
-        LoginPacientes.getContentPane().add(btnLoginP, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
+        LoginPacientes.getContentPane().add(btnLoginP, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, -1, -1));
+
+        btnCerrar2.setText("Cerrar");
+        btnCerrar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrar2ActionPerformed(evt);
+            }
+        });
+        LoginPacientes.getContentPane().add(btnCerrar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -815,7 +718,7 @@ public void agregar(){
         JOptionPane.showMessageDialog(null, "Login correcto");
         System.out.println("Encargado pertenece al pasillo: " + pasilloEncargado);
         Menu.setVisible(true);
-        Menu.resize(500, 400);
+        Menu.resize(400, 450);
     } else {
         JOptionPane.showMessageDialog(null, "Rut o contraseña incorrectos");
     }
@@ -834,7 +737,7 @@ public void agregar(){
         agregar();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnEliminarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPActionPerformed
         // TODO add your handling code here:
         Conexion co = new Conexion();
         if (co.puedeModificar(txtRutEliminar.getText())==true){
@@ -843,11 +746,11 @@ public void agregar(){
         }else {
         JOptionPane.showMessageDialog(null, "Rut o Pasillo incorrectos");
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnEliminarPActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnCerrarEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarEliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnCerrarEliminarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
@@ -901,10 +804,9 @@ public void agregar(){
         int login = con.LoginPaciente(txtRutPaciente.getText(), txtPassPaciente.getText());
 
             if (login == 1) {
-                LoginEncargados.dispose();
                 JOptionPane.showMessageDialog(null, "Login correcto");
                 Ficha.setVisible(true);
-                Ficha.resize(500, 400);
+                Ficha.resize(370, 500);
                 verDatos(txtRutPaciente.getText());
             } else {
                 JOptionPane.showMessageDialog(null, "Rut o contraseña incorrectos");
@@ -925,7 +827,7 @@ public void agregar(){
             Buscar.dispose();
             JOptionPane.showMessageDialog(null, "Paciente Encontrado");
             Modificar.setVisible(true);
-            Modificar.resize(500, 600); 
+            Modificar.resize(500, 700); 
             cargarDatos(txtRutBuscar.getText());
             rutBin = txtRutBuscar.getText().trim();
         }else {
@@ -972,26 +874,41 @@ public void agregar(){
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel5KeyTyped
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
         // TODO add your handling code here:
         Conexion con = new Conexion();
         
         if (con.puedeModificar(txtRutBuscar1.getText())==true){
             Buscar.dispose();
-            JOptionPane.showMessageDialog(null, "Paciente Encontrado");
+            JOptionPane.showMessageDialog(null, "Ficha Encontrada");
             Ficha.setVisible(true);
-            Ficha.resize(500, 600); 
+            Ficha.resize(370, 500); 
             rutBin = txtRutBuscar1.getText().trim();
             verDatos(txtRutBuscar1.getText());
             
         }else {
         JOptionPane.showMessageDialog(null, "Rut o Pasillo incorrectos");
         }
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_btnBuscar2ActionPerformed
 
     private void txtPassPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassPacienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPassPacienteActionPerformed
+
+    private void btnCerrarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSActionPerformed
+        // TODO add your handling code here:
+        Ficha.dispose();
+    }//GEN-LAST:event_btnCerrarSActionPerformed
+
+    private void btnCerrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrar2ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnCerrar2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     public void cargarDatos(String rut){
     String sql = "SELECT * FROM pacientes WHERE rut = ?";
@@ -1118,12 +1035,15 @@ public void verDatos(String rut) {
     private javax.swing.JFrame LoginPacientes;
     private javax.swing.JFrame Menu;
     private javax.swing.JFrame Modificar;
-    private javax.swing.JFrame Nuevo;
     private javax.swing.JFrame RegistroPacientes;
-    private javax.swing.JFrame Visualizar;
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnBuscar2;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnCerrar2;
+    private javax.swing.JButton btnCerrarEliminar;
+    private javax.swing.JButton btnCerrarS;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnEliminarP;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnLoginE;
@@ -1138,34 +1058,13 @@ public void verDatos(String rut) {
     private javax.swing.ButtonGroup grupoorigen;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
@@ -1179,7 +1078,6 @@ public void verDatos(String rut) {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
@@ -1215,21 +1113,11 @@ public void verDatos(String rut) {
     private javax.swing.JLabel jLabelRut;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JRadioButton rbA;
     private javax.swing.JRadioButton rbA1;
     private javax.swing.JRadioButton rbB;
     private javax.swing.JRadioButton rbB1;
     private javax.swing.JLabel rut;
-    private javax.swing.JLabel rut_n;
     private javax.swing.JTextField txtApellidoN;
     private javax.swing.JTextField txtApellidoP;
     private javax.swing.JTextField txtComentarios;
@@ -1251,6 +1139,5 @@ public void verDatos(String rut) {
     private javax.swing.JTextField txtRutEliminar;
     private javax.swing.JTextField txtRutP;
     private javax.swing.JTextField txtRutPaciente;
-    private javax.swing.JTextField txtrut_n;
     // End of variables declaration//GEN-END:variables
 }

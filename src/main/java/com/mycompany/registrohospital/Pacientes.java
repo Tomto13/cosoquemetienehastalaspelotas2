@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.registrohospital;
+package main.java.com.mycompany.registrohospital;
 
 /**
  *
@@ -22,8 +22,7 @@ public class Pacientes {
     private String contrasena;
     private Integer id_usuario_fk;
 
-    public Pacientes(int id_paciente, String rut, String nombre, String apellido, int edad, String motivo_consulta, String fecha, String pasillo, String estado, String comentarios, String contrasena, Integer id_usuario_fk) {
-        this.id_paciente = id_paciente;
+    public Pacientes(String rut, String nombre, String apellido, int edad, String motivo_consulta, String fecha, String pasillo, String estado, String contrasena) {
         this.rut = rut;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -32,10 +31,11 @@ public class Pacientes {
         this.fecha = fecha;
         this.pasillo = pasillo;
         this.estado = estado;
-        this.comentarios = comentarios;
+        this.comentarios = "Sin observaciones";
         this.contrasena = contrasena;
-        this.id_usuario_fk = id_usuario_fk;
     }
+
+   
 
     public int getId_paciente() {
         return id_paciente;

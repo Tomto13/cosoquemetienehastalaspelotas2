@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.registrohospital;
+package main.java.com.mycompany.registrohospital;
 import java.sql.*;
 /**
  *
@@ -31,8 +31,8 @@ public class Conexion {
         Connection con = conectar();
         PreparedStatement ps=null;
         
-        try{
-            String sql="INSERT INTO pacientes(rut, nombre, apellido, edad, motivo_consulta, fecha_ingreso, pasillo, estado, comentarios) VALUES (?,?,?,?,?,?,?,?,?)";
+        try {
+            String sql="INSERT INTO pacientes(rut, nombre, apellido, edad, motivo_consulta, fecha_ingreso, pasillo, estado, comentarios, `contraseña`) VALUES (?,?,?,?,?,?,?,?,?,?)";
             ps= con.prepareStatement(sql);
             ps.setString(1, pa.getRut());
             ps.setString(2, pa.getNombre());
@@ -43,9 +43,15 @@ public class Conexion {
             ps.setString(7, pa.getPasillo());
             ps.setString(8, pa.getEstado());
             ps.setString(9, pa.getComentarios());
+            ps.setString(10, pa.getContrasena());
+
+            // 🔥 AQUI
+            System.out.println("PASSWORD QUE LLEGA: " + pa.getContrasena());
+
             ps.executeUpdate();
             System.out.println("Registro ingresado");
-        }catch(SQLException e){
+        }
+        catch(SQLException e){
             System.out.println("Error al insertar"+e.getMessage());
         }finally{
             try{
@@ -56,32 +62,29 @@ public class Conexion {
             }
         }
     }
-    public static boolean eliminar(String rut) {
+    
+    public static void eliminar(String rut) {
     String sql = "DELETE FROM pacientes WHERE rut = ?";
 
     try (Connection con = conectar();
          PreparedStatement ps = con.prepareStatement(sql)) {
         
         ps.setString(1, rut);
-
         int filas = ps.executeUpdate();
 
         if (filas > 0) {
-            System.out.println("Paciente eliminado correctamente");
-            return true;
+            System.out.println("Paciente eliminado correctamente");           
         } else {
-            System.out.println("No se encontró un paciente con ese RUT");
-            return false;
+            System.out.println("No se encontró un paciente con ese RUT");         
         }
 
     } catch (SQLException e) {
         System.out.println("Error eliminando paciente: " + e.getMessage());
-        return false;
     }
 }
     
     // Se utulizo Chatgpt para adaptar codigo antiguo a uno utilizable para este 
-    public static boolean actualizar(Pacientes pa) {
+public static boolean actualizar(Pacientes pa) {
     String sql = "UPDATE pacientes SET nombre=?, apellido=?, edad=?, motivo_consulta=?, "
                + "fecha_ingreso=?, pasillo=?, estado=?, comentarios=?, contraseña=? "
                + "WHERE rut=?";

@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package main.java.GUI;
-import com.mycompany.registrohospital.Usuarios;
-import com.mycompany.registrohospital.Pacientes;
-import com.mycompany.registrohospital.Conexion;
+package GUI;
+import main.java.com.mycompany.registrohospital.Usuarios;
+import main.java.com.mycompany.registrohospital.Pacientes;
+import main.java.com.mycompany.registrohospital.Conexion;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -50,9 +50,10 @@ public void agregar(){
         else{
             javax.swing.JOptionPane.showMessageDialog(this, "Complete el campo nombre","Error", JOptionPane.WARNING_MESSAGE);
         }
+        String comentario=txtComentarios.getText();
         String estado=cboxEstado.getSelectedItem().toString();
         String pass=txtPassP.getText();
-        Pacientes pa = new Pacientes(rut, nombre, apellido, edad, motivo, fecha, pasillo, estado, pass);
+        Pacientes pa = new Pacientes(rut, nombre, apellido, edad, motivo, fecha, pasillo, estado, comentario, pass);
         
         Conexion co = new Conexion();
         co.insertar(pa);
@@ -103,6 +104,7 @@ public void agregar(){
         jLabel12 = new javax.swing.JLabel();
         btnIngresar = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
+        txtComentarios = new javax.swing.JTextField();
         pasillos = new javax.swing.ButtonGroup();
         cboxUsuario = new javax.swing.JComboBox<>();
         btnentrar = new javax.swing.JButton();
@@ -244,6 +246,9 @@ public void agregar(){
         jLabel16.setText("Ingreso De Pacientes");
         RegistroPacientes.getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
+        txtComentarios.setText("jTextField1");
+        RegistroPacientes.getContentPane().add(txtComentarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, -1, -1));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -275,8 +280,10 @@ public void agregar(){
         String tipo = cboxUsuario.getSelectedItem().toString();
 
         if (tipo.equals("Encargado")) {
-            LoginEncargados.setVisible(true);
-            LoginEncargados.resize(450,300);
+            //LoginEncargados.setVisible(true);
+            //LoginEncargados.resize(450,300);
+            //RegistroPacientes.setVisible(true);
+            
         }
         else if (tipo.equals("Paciente")) {
             LoginPacientes.setVisible(true);
@@ -367,6 +374,7 @@ public void agregar(){
     private javax.swing.JRadioButton rbA;
     private javax.swing.JRadioButton rbB;
     private javax.swing.JTextField txtApellidoP;
+    private javax.swing.JTextField txtComentarios;
     private javax.swing.JTextField txtFecha_Ingreso;
     private javax.swing.JTextField txtMotivo_Consulta;
     private javax.swing.JTextField txtNombreP;

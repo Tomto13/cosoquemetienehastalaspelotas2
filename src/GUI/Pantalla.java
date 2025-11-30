@@ -11,6 +11,8 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.util.Set;
+import javax.swing.JTextField;
+import static main.java.com.mycompany.registrohospital.Conexion.conectar;
 
 /**
  *
@@ -26,12 +28,7 @@ public class Pantalla extends javax.swing.JFrame {
     public Pantalla() {
         initComponents();
     }
-    public void llenarcombo(){
-        for (int i = 0; i<150; i++){
-            cboxEdadP.addItem(String.valueOf(i+1));
-        }
-            
-    }
+    
 // public void editar(){
     //    Pacientes pa = new Pacientes();
     //    Modificar.resize(400, 400);
@@ -45,33 +42,50 @@ public class Pantalla extends javax.swing.JFrame {
         
         
  //   }
+    public static String pasilloEncargado=" ";
 public void agregar(){
         String nombre= txtNombreP.getText();
         String rut= txtRutP.getText();
         String apellido=txtApellidoP.getText();
         String motivo=txtMotivo_Consulta.getText();
-        int edad= Integer.parseInt(cboxEdadP.getSelectedItem().toString());
+        String edadTexto = txtEdadIngreso.getText().trim();
+        if (edadTexto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Complete el campo edad", "Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        String comentario=txtComentarios.getText();
+        int edad = Integer.parseInt(edadTexto);
+
         String fecha = txtFecha_Ingreso.getText();
         String pasillo="";
+        String estado=cboxEstado.getSelectedItem().toString();
+        String pass=txtPassP.getText();
+        
+        if (nombre.isEmpty() || rut.isEmpty() || apellido.isEmpty() || motivo.isEmpty() || fecha.isEmpty() || pass.isEmpty() || estado.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Complete todos los campos", "Error", JOptionPane.WARNING_MESSAGE);
+        return;
+        }
+        
         if (rbA.isSelected()){
             pasillo="A";
         }
         else if (rbB.isSelected()){
-            pasillo="B";
-         
-            
+            pasillo="B";    
         }
         else{
-            javax.swing.JOptionPane.showMessageDialog(this, "Complete el campo nombre","Error", JOptionPane.WARNING_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(null, "Complete el todos los campos","Error", JOptionPane.WARNING_MESSAGE);
         }
-        String estado=cboxEstado.getSelectedItem().toString();
-        String pass=txtPassP.getText();
-        Pacientes pa = new Pacientes(rut, nombre, apellido, edad, motivo, fecha, pasillo, estado, pass);
+        Pacientes pa = new Pacientes(rut, nombre, apellido, edad, motivo, fecha, pasillo, estado, comentario, pass);
         
         Conexion co = new Conexion();
         co.insertar(pa);
         
     }
+
+    public static String rutBin = "";
+
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,25 +95,6 @@ public void agregar(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Ficha = new javax.swing.JFrame();
-        rut = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        comboEstado = new javax.swing.JComboBox<>();
-        jLabelNombre = new javax.swing.JLabel();
         Nuevo = new javax.swing.JFrame();
         rut_n = new javax.swing.JLabel();
         txtrut_n = new javax.swing.JTextField();
@@ -131,20 +126,11 @@ public void agregar(){
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        Eliminar = new javax.swing.JFrame();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        txtRutEliminar = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         Modificar = new javax.swing.JFrame();
         jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        txtRutN = new javax.swing.JTextField();
-        jButton11 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         cboxEstadoN = new javax.swing.JComboBox<>();
-        jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
@@ -155,26 +141,41 @@ public void agregar(){
         txtApellidoN = new javax.swing.JTextField();
         txtMotivoN = new javax.swing.JTextField();
         txtFechaN = new javax.swing.JTextField();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        LoginEncargados = new javax.swing.JFrame();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
-        txtPass = new javax.swing.JTextField();
-        txtRut = new javax.swing.JTextField();
-        btnLoginE = new javax.swing.JButton();
-        LoginPacientes = new javax.swing.JFrame();
-        txtRutPaciente = new javax.swing.JTextField();
-        txtPassPaciente = new javax.swing.JTextField();
-        jLabel47 = new javax.swing.JLabel();
-        jLabel48 = new javax.swing.JLabel();
-        jLabel49 = new javax.swing.JLabel();
-        btnLoginP = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        rbA1 = new javax.swing.JRadioButton();
+        rbB1 = new javax.swing.JRadioButton();
+        txtEdadN = new javax.swing.JTextField();
+        txtComentariosN = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        Ficha = new javax.swing.JFrame();
+        rut = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabelNombre = new javax.swing.JLabel();
+        jLabelRut = new javax.swing.JLabel();
+        jLabelApellido = new javax.swing.JLabel();
+        jLabelEdad = new javax.swing.JLabel();
+        jLabelMotivo = new javax.swing.JLabel();
+        jLabelFecha = new javax.swing.JLabel();
+        jLabelPasillo = new javax.swing.JLabel();
+        jLabelEstado = new javax.swing.JLabel();
+        jLabelComentarios = new javax.swing.JLabel();
+        Eliminar = new javax.swing.JFrame();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        txtRutEliminar = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         RegistroPacientes = new javax.swing.JFrame();
         txtNombreP = new javax.swing.JTextField();
         txtApellidoP = new javax.swing.JTextField();
         txtRutP = new javax.swing.JTextField();
-        cboxEdadP = new javax.swing.JComboBox<>();
         txtMotivo_Consulta = new javax.swing.JTextField();
         txtFecha_Ingreso = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
@@ -192,64 +193,50 @@ public void agregar(){
         jLabel57 = new javax.swing.JLabel();
         btnIngresar = new javax.swing.JButton();
         jLabel58 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        txtEdadIngreso = new javax.swing.JTextField();
+        jLabel38 = new javax.swing.JLabel();
+        txtComentarios = new javax.swing.JTextField();
+        jLabel39 = new javax.swing.JLabel();
+        Buscar2 = new javax.swing.JFrame();
+        jButton9 = new javax.swing.JButton();
+        txtRutBuscar1 = new javax.swing.JTextField();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        Buscar = new javax.swing.JFrame();
+        jButton1 = new javax.swing.JButton();
+        txtRutBuscar = new javax.swing.JTextField();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
         Menu = new javax.swing.JFrame();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
+        btnVisualizar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        LoginEncargados = new javax.swing.JFrame();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        txtPass = new javax.swing.JTextField();
+        txtRut = new javax.swing.JTextField();
+        btnLoginE = new javax.swing.JButton();
+        LoginPacientes = new javax.swing.JFrame();
+        txtRutPaciente = new javax.swing.JTextField();
+        txtPassPaciente = new javax.swing.JTextField();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        btnLoginP = new javax.swing.JButton();
+        grupomodificado = new javax.swing.ButtonGroup();
+        grupoorigen = new javax.swing.ButtonGroup();
         cboxUsuario = new javax.swing.JComboBox<>();
         btnentrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-
-        Ficha.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        rut.setText("Rut:");
-        Ficha.getContentPane().add(rut, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
-
-        jLabel3.setText("Nombre:");
-        Ficha.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
-        Ficha.getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 230, -1));
-
-        jLabel4.setText("Apellido:");
-        Ficha.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
-
-        jLabel5.setText("Edad:");
-        Ficha.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
-
-        jLabel6.setText("Motivo Consulta:");
-        Ficha.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
-
-        jLabel7.setText("Fecha Ingreso:");
-        Ficha.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
-
-        jLabel8.setText("Pasillo:");
-        Ficha.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
-
-        jLabel9.setText("Estado:");
-        Ficha.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
-
-        jLabel10.setText("Comentarios:");
-        Ficha.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
-        Ficha.getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 230, -1));
-        Ficha.getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 40, -1));
-        Ficha.getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 230, -1));
-        Ficha.getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 230, -1));
-        Ficha.getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 230, -1));
-
-        jTextField7.setText("Caja grande de texto con scroll");
-        Ficha.getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, -1, -1));
-
-        comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dado de alta", "En Riesgo", "Estado critico" }));
-        Ficha.getContentPane().add(comboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, -1, -1));
-
-        jLabelNombre.setText("jLabel36");
-        Ficha.getContentPane().add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, -1, -1));
 
         Nuevo.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -337,6 +324,167 @@ public void agregar(){
         jButton8.setText("Actualizar");
         Visualizar.getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 440, -1, -1));
 
+        Modificar.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel25.setText("Modificar Paciente");
+        Modificar.getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        Modificar.getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, -1, -1));
+
+        btnGuardar.setText("Guardar Cambios");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        Modificar.getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, -1, -1));
+
+        cboxEstadoN.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dado de alta", "En riesgo", "Estado crítico" }));
+        Modificar.getContentPane().add(cboxEstadoN, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 120, -1));
+
+        jLabel33.setText("Estado:");
+        Modificar.getContentPane().add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, -1, -1));
+
+        jLabel31.setText("Fecha de Ingreso:");
+        Modificar.getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, -1));
+
+        jLabel30.setText("Motivo Consulta:");
+        Modificar.getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, -1, -1));
+
+        jLabel29.setText("Edad:");
+        Modificar.getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
+
+        jLabel28.setText("Apellido:");
+        Modificar.getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
+
+        jLabel27.setText("Nombre:");
+        Modificar.getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, -1, -1));
+        Modificar.getContentPane().add(txtNombreN, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 200, -1));
+        Modificar.getContentPane().add(txtApellidoN, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 200, -1));
+        Modificar.getContentPane().add(txtMotivoN, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 200, -1));
+        Modificar.getContentPane().add(txtFechaN, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 200, -1));
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Pasilllo"));
+        jPanel5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPanel5KeyTyped(evt);
+            }
+        });
+
+        grupomodificado.add(rbA1);
+        rbA1.setText("Pasillo A");
+
+        grupomodificado.add(rbB1);
+        rbB1.setText("Pasillo B");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rbA1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addComponent(rbB1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbA1)
+                    .addComponent(rbB1))
+                .addContainerGap(10, Short.MAX_VALUE))
+        );
+
+        Modificar.getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 320, 60));
+
+        txtEdadN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEdadNActionPerformed(evt);
+            }
+        });
+        txtEdadN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEdadNKeyTyped(evt);
+            }
+        });
+        Modificar.getContentPane().add(txtEdadN, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
+
+        txtComentariosN.setText("Sin observaciones");
+        txtComentariosN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtComentariosNActionPerformed(evt);
+            }
+        });
+        Modificar.getContentPane().add(txtComentariosN, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 300, 50));
+
+        jLabel26.setText("Comentarios");
+        Modificar.getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, -1, -1));
+
+        Ficha.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        rut.setText("Rut:");
+        Ficha.getContentPane().add(rut, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+
+        jLabel3.setText("Nombre:");
+        Ficha.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+
+        jLabel4.setText("Apellido:");
+        Ficha.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
+
+        jLabel5.setText("Edad:");
+        Ficha.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
+
+        jLabel6.setText("Motivo Consulta:");
+        Ficha.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+
+        jLabel7.setText("Fecha Ingreso:");
+        Ficha.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+
+        jLabel8.setText("Pasillo:");
+        Ficha.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+
+        jLabel9.setText("Estado:");
+        Ficha.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+
+        jLabel10.setText("Comentarios:");
+        Ficha.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
+
+        jLabelNombre.setText("jLabel36");
+        Ficha.getContentPane().add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, -1));
+
+        jLabelRut.setText("jLabel40");
+        Ficha.getContentPane().add(jLabelRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
+
+        jLabelApellido.setText("jLabel40");
+        Ficha.getContentPane().add(jLabelApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
+
+        jLabelEdad.setText("jLabel40");
+        Ficha.getContentPane().add(jLabelEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, -1, -1));
+
+        jLabelMotivo.setText("jLabel40");
+        Ficha.getContentPane().add(jLabelMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, -1, -1));
+
+        jLabelFecha.setText("jLabel40");
+        Ficha.getContentPane().add(jLabelFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, -1, -1));
+
+        jLabelPasillo.setText("jLabel40");
+        Ficha.getContentPane().add(jLabelPasillo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, -1, -1));
+
+        jLabelEstado.setText("jLabel40");
+        Ficha.getContentPane().add(jLabelEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, -1, -1));
+
+        jLabelComentarios.setText("jLabel40");
+        Ficha.getContentPane().add(jLabelComentarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
+
         Eliminar.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel21.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
@@ -363,56 +511,198 @@ public void agregar(){
         });
         Eliminar.getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, -1, -1));
 
-        Modificar.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        RegistroPacientes.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        RegistroPacientes.getContentPane().add(txtNombreP, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 160, -1));
+        RegistroPacientes.getContentPane().add(txtApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 160, -1));
+        RegistroPacientes.getContentPane().add(txtRutP, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 160, -1));
+        RegistroPacientes.getContentPane().add(txtMotivo_Consulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 160, -1));
+        RegistroPacientes.getContentPane().add(txtFecha_Ingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 100, -1));
 
-        jLabel25.setText("Modificar Paciente");
-        Modificar.getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, -1));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Pasilllo"));
 
-        jLabel26.setText("RUT");
-        Modificar.getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
-        Modificar.getContentPane().add(txtRutN, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 200, -1));
+        grupoorigen.add(rbA);
+        rbA.setText("Pasillo A");
 
-        jButton11.setText("Cancelar");
-        Modificar.getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, -1, -1));
+        grupoorigen.add(rbB);
+        rbB.setText("Pasillo B");
 
-        jButton10.setText("Guardar Cambios");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rbA, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(rbB, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbA)
+                    .addComponent(rbB))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        RegistroPacientes.getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 260, 60));
+
+        cboxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dado de alta", "En riesgo", "Estado crítico" }));
+        RegistroPacientes.getContentPane().add(cboxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, -1));
+
+        txtPassP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                txtPassPActionPerformed(evt);
             }
         });
-        Modificar.getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, -1, -1));
+        RegistroPacientes.getContentPane().add(txtPassP, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 400, 71, -1));
 
-        cboxEstadoN.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dado de alta", "En riesgo", "Estado crítico" }));
-        Modificar.getContentPane().add(cboxEstadoN, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 120, -1));
+        jLabel50.setText("Rut");
+        RegistroPacientes.getContentPane().add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 37, -1));
 
-        jLabel32.setText("Pasillo:");
-        Modificar.getContentPane().add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, -1, -1));
+        jLabel51.setText("Nombre");
+        RegistroPacientes.getContentPane().add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
 
-        jLabel33.setText("Estado:");
-        Modificar.getContentPane().add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, -1));
+        jLabel52.setText("Apellido");
+        RegistroPacientes.getContentPane().add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
 
-        jLabel31.setText("Fecha de Ingreso:");
-        Modificar.getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, -1));
+        jLabel53.setText("Edad");
+        RegistroPacientes.getContentPane().add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
-        jLabel30.setText("Motivo Consulta:");
-        Modificar.getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, -1, -1));
+        jLabel54.setText("Motivo");
+        RegistroPacientes.getContentPane().add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
 
-        jLabel29.setText("Edad:");
-        Modificar.getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
+        jLabel55.setText("Fecha de Ingreso");
+        RegistroPacientes.getContentPane().add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 100, 50));
 
-        jLabel28.setText("Apellido:");
-        Modificar.getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
+        jLabel56.setText("Estado");
+        RegistroPacientes.getContentPane().add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, -1));
 
-        jLabel27.setText("Nombre:");
-        Modificar.getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, -1, -1));
-        Modificar.getContentPane().add(txtNombreN, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 200, -1));
-        Modificar.getContentPane().add(txtApellidoN, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 200, -1));
-        Modificar.getContentPane().add(txtMotivoN, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 200, -1));
-        Modificar.getContentPane().add(txtFechaN, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 200, -1));
+        jLabel57.setText("Contraseña");
+        RegistroPacientes.getContentPane().add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B" }));
-        Modificar.getContentPane().add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 50, -1));
+        btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
+        RegistroPacientes.getContentPane().add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, -1, -1));
+
+        jLabel58.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        jLabel58.setText("Ingreso De Pacientes");
+        RegistroPacientes.getContentPane().add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
+
+        txtEdadIngreso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEdadIngresoKeyTyped(evt);
+            }
+        });
+        RegistroPacientes.getContentPane().add(txtEdadIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 90, -1));
+
+        jLabel38.setText("Año-Mes-Día");
+        RegistroPacientes.getContentPane().add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
+        RegistroPacientes.getContentPane().add(txtComentarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 250, 50));
+
+        jLabel39.setText("Comentarios");
+        RegistroPacientes.getContentPane().add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, -1, -1));
+
+        Buscar2.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton9.setText("Buscar");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        Buscar2.getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 97, -1));
+        Buscar2.getContentPane().add(txtRutBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 200, -1));
+
+        jLabel40.setText("Ingrese Rut");
+        Buscar2.getContentPane().add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
+
+        jLabel41.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        jLabel41.setText("Buscar Paciente");
+        Buscar2.getContentPane().add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, -1));
+
+        Buscar.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        Buscar.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 97, -1));
+        Buscar.getContentPane().add(txtRutBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 200, -1));
+
+        jLabel32.setText("Ingrese Rut");
+        Buscar.getContentPane().add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
+
+        jLabel36.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        jLabel36.setText("Buscar Paciente");
+        Buscar.getContentPane().add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, -1));
+
+        Menu.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel34.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        jLabel34.setText("Menu Principal");
+        Menu.getContentPane().add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 130, 30));
+
+        jLabel35.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel35.setText("Bienvenido");
+        Menu.getContentPane().add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 80, 20));
+
+        btnAgregar.setText("Agregar Paciente");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+        Menu.getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 250, 20));
+
+        btnVisualizar.setText("Visualizar Paciente");
+        btnVisualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisualizarActionPerformed(evt);
+            }
+        });
+        Menu.getContentPane().add(btnVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 250, 20));
+
+        btnModificar.setText("Modificar Paciente");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+        Menu.getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 250, 20));
+
+        btnEliminar.setText("Eliminar Paciente");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        Menu.getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 250, 20));
+
+        jButton16.setText("Cerrar Sesion");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+        Menu.getContentPane().add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 140, 20));
+
+        jLabel23.setText("Listo");
+        Menu.getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 60, 20));
+
+        jLabel24.setText("Listo");
+        Menu.getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 40, -1));
+
+        jLabel37.setText("Listo");
+        Menu.getContentPane().add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 40, 20));
 
         LoginEncargados.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -443,6 +733,12 @@ public void agregar(){
             }
         });
         LoginPacientes.getContentPane().add(txtRutPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 72, 150, -1));
+
+        txtPassPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassPacienteActionPerformed(evt);
+            }
+        });
         LoginPacientes.getContentPane().add(txtPassPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 124, 150, -1));
 
         jLabel47.setText("Rut");
@@ -456,146 +752,12 @@ public void agregar(){
         LoginPacientes.getContentPane().add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, -1, -1));
 
         btnLoginP.setText("Iniciar Sesión");
+        btnLoginP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginPActionPerformed(evt);
+            }
+        });
         LoginPacientes.getContentPane().add(btnLoginP, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
-
-        RegistroPacientes.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        RegistroPacientes.getContentPane().add(txtNombreP, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 71, -1));
-        RegistroPacientes.getContentPane().add(txtApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 71, -1));
-        RegistroPacientes.getContentPane().add(txtRutP, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 71, -1));
-
-        cboxEdadP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0" }));
-        cboxEdadP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboxEdadPActionPerformed(evt);
-            }
-        });
-        RegistroPacientes.getContentPane().add(cboxEdadP, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, -1, -1));
-        RegistroPacientes.getContentPane().add(txtMotivo_Consulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 71, -1));
-        RegistroPacientes.getContentPane().add(txtFecha_Ingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 71, -1));
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Pasilllo"));
-
-        rbA.setText("Pasillo A");
-
-        rbB.setText("Pasillo B");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(rbA, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(rbB, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbA)
-                    .addComponent(rbB))
-                .addContainerGap(10, Short.MAX_VALUE))
-        );
-
-        RegistroPacientes.getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 260, 60));
-
-        cboxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dado de alta", "En riesgo", "Estado crítico" }));
-        RegistroPacientes.getContentPane().add(cboxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, -1));
-
-        txtPassP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPassPActionPerformed(evt);
-            }
-        });
-        RegistroPacientes.getContentPane().add(txtPassP, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 400, 71, -1));
-
-        jLabel50.setText("Rut");
-        RegistroPacientes.getContentPane().add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 37, -1));
-
-        jLabel51.setText("Nombre");
-        RegistroPacientes.getContentPane().add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
-
-        jLabel52.setText("Apellido");
-        RegistroPacientes.getContentPane().add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
-
-        jLabel53.setText("Edad");
-        RegistroPacientes.getContentPane().add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
-
-        jLabel54.setText("Motivo");
-        RegistroPacientes.getContentPane().add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
-
-        jLabel55.setText("Fecha de Ingreso");
-        RegistroPacientes.getContentPane().add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 100, 50));
-
-        jLabel56.setText("Estado");
-        RegistroPacientes.getContentPane().add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, -1));
-
-        jLabel57.setText("Contraseña");
-        RegistroPacientes.getContentPane().add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
-
-        btnIngresar.setText("Ingresar");
-        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresarActionPerformed(evt);
-            }
-        });
-        RegistroPacientes.getContentPane().add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, -1, -1));
-
-        jLabel58.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        jLabel58.setText("Ingreso De Pacientes");
-        RegistroPacientes.getContentPane().add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del Paciente"));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Menu.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel34.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        jLabel34.setText("Menu Principal");
-        Menu.getContentPane().add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 130, 30));
-
-        jLabel35.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel35.setText("Bienvenido");
-        Menu.getContentPane().add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 80, 20));
-
-        jButton12.setText("Agregar Paciente");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-        Menu.getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 250, 20));
-
-        jButton13.setText("Visualizar Paciente");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
-        Menu.getContentPane().add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 250, 20));
-
-        jButton14.setText("Modificar Paciente");
-        Menu.getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 250, 20));
-
-        jButton15.setText("Eliminar Paciente");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
-            }
-        });
-        Menu.getContentPane().add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 250, 20));
-
-        jButton16.setText("Cerrar Sesion");
-        Menu.getContentPane().add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 140, 20));
-
-        jLabel23.setText("Listo");
-        Menu.getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 40, 20));
-
-        jLabel24.setText("Listo");
-        Menu.getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 40, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -632,14 +794,12 @@ public void agregar(){
         String tipo = cboxUsuario.getSelectedItem().toString();
 
         if (tipo.equals("Encargado")) {
-            //LoginEncargados.setVisible(true);
-            //LoginEncargados.resize(450,300);
-            //RegistroPacientes.setVisible(true);
-            Menu.setVisible(true);
-            Menu.resize(500, 350);
-
+            this.dispose();
+            LoginEncargados.setVisible(true);
+            LoginEncargados.resize(450,300);         
         }
         else if (tipo.equals("Paciente")) {
+            this.dispose();
             LoginPacientes.setVisible(true);
             LoginPacientes.resize(450,300);
         }
@@ -647,16 +807,23 @@ public void agregar(){
 
     private void btnLoginEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginEActionPerformed
         // TODO add your handling code here:
+        Conexion con = new Conexion();
+    int login = con.LoginUsuario(txtRut.getText(), txtPass.getText());
+
+    if (login == 1) {
+        LoginEncargados.dispose();
+        JOptionPane.showMessageDialog(null, "Login correcto");
+        System.out.println("Encargado pertenece al pasillo: " + pasilloEncargado);
+        Menu.setVisible(true);
+        Menu.resize(500, 400);
+    } else {
+        JOptionPane.showMessageDialog(null, "Rut o contraseña incorrectos");
+    }
     }//GEN-LAST:event_btnLoginEActionPerformed
 
     private void txtRutPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutPacienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRutPacienteActionPerformed
-
-    private void cboxEdadPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxEdadPActionPerformed
-        // TODO add your handling code here:
-        llenarcombo();
-    }//GEN-LAST:event_cboxEdadPActionPerformed
 
     private void txtPassPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassPActionPerformed
         // TODO add your handling code here:
@@ -670,35 +837,253 @@ public void agregar(){
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         Conexion co = new Conexion();
-        co.eliminar(txtRutEliminar.getText().trim());
+        if (co.puedeModificar(txtRutEliminar.getText())==true){
+            co.eliminar(txtRutEliminar.getText().trim());
+            JOptionPane.showMessageDialog(null, "Paciente eliminado correctamente");
+        }else {
+        JOptionPane.showMessageDialog(null, "Rut o Pasillo incorrectos");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         Eliminar.setVisible(true);
         Eliminar.resize(500, 300);
-    }//GEN-LAST:event_jButton15ActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
         RegistroPacientes.setVisible(true);
         RegistroPacientes.resize(400, 600);
-    }//GEN-LAST:event_jButton12ActionPerformed
+        if (!Pantalla.pasilloEncargado.equalsIgnoreCase("NINGUNO")) {
+                txtComentarios.setEditable(false);
+         }
+        if (Pantalla.pasilloEncargado.equalsIgnoreCase("A")) {
+            rbA.setSelected(true);
+            rbA.setEnabled(true);
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-        Ficha.setVisible(true);
-        Ficha.resize(500, 300);        
-    }//GEN-LAST:event_jButton13ActionPerformed
+            rbB.setSelected(false);
+            rbB.setEnabled(false);
+        }
+        else if (Pantalla.pasilloEncargado.equalsIgnoreCase("B")) {
+            rbB.setSelected(true);
+            rbB.setEnabled(true);
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+            rbA.setSelected(false);
+            rbA.setEnabled(false);
+        }
+        else {
+            rbA.setEnabled(true);
+            rbB.setEnabled(true);
+        }
+
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
         // TODO add your handling code here:
-        Conexion co = new Conexion();
-    }//GEN-LAST:event_jButton10ActionPerformed
+        Buscar2.setVisible(true);
+        Buscar2.resize(450, 300);
+        
+    }//GEN-LAST:event_btnVisualizarActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+        actualizar(rutBin);
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnLoginPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginPActionPerformed
+        // TODO add your handling code here:
+        Conexion con = new Conexion();
+        int login = con.LoginPaciente(txtRutPaciente.getText(), txtPassPaciente.getText());
+
+            if (login == 1) {
+                LoginEncargados.dispose();
+                JOptionPane.showMessageDialog(null, "Login correcto");
+                Ficha.setVisible(true);
+                Ficha.resize(500, 400);
+                verDatos(txtRutPaciente.getText());
+            } else {
+                JOptionPane.showMessageDialog(null, "Rut o contraseña incorrectos");
+            }
+        
+    }//GEN-LAST:event_btnLoginPActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        Modificar.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Conexion con = new Conexion();
+        
+        if (con.puedeModificar(txtRutBuscar.getText())==true){
+            Buscar.dispose();
+            JOptionPane.showMessageDialog(null, "Paciente Encontrado");
+            Modificar.setVisible(true);
+            Modificar.resize(500, 600); 
+            cargarDatos(txtRutBuscar.getText());
+            rutBin = txtRutBuscar.getText().trim();
+        }else {
+        JOptionPane.showMessageDialog(null, "Rut o Pasillo incorrectos");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        Buscar.setVisible(true);
+        Buscar.resize(450, 300);
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void txtEdadNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEdadNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEdadNActionPerformed
+
+    private void txtEdadNKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadNKeyTyped
+        // TODO add your handling code here:}
+        char a=evt.getKeyChar();
+        if(!Character.isDigit(a)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtEdadNKeyTyped
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void txtEdadIngresoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadIngresoKeyTyped
+        // TODO add your handling code here:
+        char a=evt.getKeyChar();
+        if(!Character.isDigit(a)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtEdadIngresoKeyTyped
+
+    private void txtComentariosNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtComentariosNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtComentariosNActionPerformed
+
+    private void jPanel5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel5KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel5KeyTyped
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        Conexion con = new Conexion();
+        
+        if (con.puedeModificar(txtRutBuscar1.getText())==true){
+            Buscar.dispose();
+            JOptionPane.showMessageDialog(null, "Paciente Encontrado");
+            Ficha.setVisible(true);
+            Ficha.resize(500, 600); 
+            rutBin = txtRutBuscar1.getText().trim();
+            verDatos(txtRutBuscar1.getText());
+            
+        }else {
+        JOptionPane.showMessageDialog(null, "Rut o Pasillo incorrectos");
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void txtPassPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassPacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPassPacienteActionPerformed
+
+    public void cargarDatos(String rut){
+    String sql = "SELECT * FROM pacientes WHERE rut = ?";
+    
+    try(Connection con = Conexion.conectar();
+        PreparedStatement ps = con.prepareStatement(sql)){
+
+        ps.setString(1, rut.trim());
+        ResultSet rs = ps.executeQuery();
+
+        if(rs.next()){
+            txtNombreN.setText(rs.getString("nombre"));
+            txtApellidoN.setText(rs.getString("apellido"));
+            txtFechaN.setText(rs.getString("fecha_ingreso"));
+            txtEdadN.setText(rs.getString("edad"));
+            txtMotivoN.setText(rs.getString("motivo_consulta"));
+            cboxEstadoN.setSelectedItem(rs.getString("estado"));
+            String pasillo = rs.getString("pasillo");
+            if (pasillo.equals("A")) {
+                rbA1.setSelected(true);
+            } else if (pasillo.equals("B")) {
+                rbB1.setSelected(true);
+            }
+            txtComentariosN.setText(rs.getString("comentarios"));
+            if (!Pantalla.pasilloEncargado.equalsIgnoreCase("NINGUNO")) {
+                txtComentariosN.setEditable(false);
+            }
+        }
+
+    }catch(SQLException ex){
+        JOptionPane.showMessageDialog(null, "Error cargando datos: " + ex.getMessage());
+    }
+}
+public void actualizar(String rut) {
+    String sql = "UPDATE pacientes SET nombre=?, apellido=?, edad=?, motivo_consulta=?,fecha_ingreso=?, pasillo=?, estado=?, comentarios=? WHERE rut=?";
+
+    try (Connection con = conectar();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+        
+        ps.setString(1, txtNombreN.getText());
+        ps.setString(2, txtApellidoN.getText());
+        ps.setInt(3, Integer.parseInt(txtEdadN.getText().trim()));
+        ps.setString(4, txtMotivoN.getText());
+        ps.setString(5, txtFechaN.getText());
+        String pasilloN="";
+        if(rbA1.isSelected()){
+            pasilloN="A";
+        }else{
+            pasilloN="B";
+        }
+        ps.setString(6, pasilloN);
+        ps.setString(7, cboxEstadoN.getSelectedItem().toString());
+        ps.setString(8, txtComentariosN.getText());
+        ps.setString(9, rut);
+        
+        int filas = ps.executeUpdate();
+        
+        if (filas > 0) {
+            System.out.println("Paciente con rut: "+ rutBin+ " actualizado" );
+        } else{
+             System.out.println("No se encontró un paciente con RUT " + rutBin);
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error actualizando paciente: " + e.getMessage());
+    }
+    }
+public void verDatos(String rut) {
+    Conexion co = new Conexion();
+    ResultSet rs = co.obtenerPacientePorRut(rut);
+
+    try {
+        if (rs != null && rs.next()) {
+            jLabelRut.setText(rs.getString("rut"));
+            jLabelNombre.setText(rs.getString("nombre"));
+            jLabelApellido.setText(rs.getString("apellido"));
+            jLabelEdad.setText(String.valueOf(rs.getInt("edad")));
+            jLabelMotivo.setText(rs.getString("motivo_consulta"));
+            jLabelFecha.setText(rs.getString("fecha_ingreso"));
+            jLabelPasillo.setText(rs.getString("pasillo"));
+            jLabelEstado.setText(rs.getString("estado"));
+            jLabelComentarios.setText(rs.getString("comentarios"));
+        } else {
+            JOptionPane.showMessageDialog(this, 
+                "No se encontró paciente con ese RUT", 
+                "Error", 
+                JOptionPane.WARNING_MESSAGE);
+        }
+    } catch (Exception e) {
+        System.out.println("Error mostrando datos: " + e.getMessage());
+    }
+}
 
     /**
      * @param args the command line arguments
@@ -724,8 +1109,9 @@ public void agregar(){
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new Pantalla().setVisible(true));
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame Buscar;
+    private javax.swing.JFrame Buscar2;
     private javax.swing.JFrame Eliminar;
     private javax.swing.JFrame Ficha;
     private javax.swing.JFrame LoginEncargados;
@@ -735,21 +1121,22 @@ public void agregar(){
     private javax.swing.JFrame Nuevo;
     private javax.swing.JFrame RegistroPacientes;
     private javax.swing.JFrame Visualizar;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnLoginE;
     private javax.swing.JButton btnLoginP;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnVisualizar;
     private javax.swing.JButton btnentrar;
-    private javax.swing.JComboBox<String> cboxEdadP;
     private javax.swing.JComboBox<String> cboxEstado;
     private javax.swing.JComboBox<String> cboxEstadoN;
     private javax.swing.JComboBox<String> cboxUsuario;
-    private javax.swing.JComboBox<String> comboEstado;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
+    private javax.swing.ButtonGroup grupomodificado;
+    private javax.swing.ButtonGroup grupoorigen;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -758,10 +1145,10 @@ public void agregar(){
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -791,7 +1178,13 @@ public void agregar(){
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
@@ -811,31 +1204,38 @@ public void agregar(){
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelApellido;
+    private javax.swing.JLabel jLabelComentarios;
+    private javax.swing.JLabel jLabelEdad;
+    private javax.swing.JLabel jLabelEstado;
+    private javax.swing.JLabel jLabelFecha;
+    private javax.swing.JLabel jLabelMotivo;
     private javax.swing.JLabel jLabelNombre;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jLabelPasillo;
+    private javax.swing.JLabel jLabelRut;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JRadioButton rbA;
+    private javax.swing.JRadioButton rbA1;
     private javax.swing.JRadioButton rbB;
+    private javax.swing.JRadioButton rbB1;
     private javax.swing.JLabel rut;
     private javax.swing.JLabel rut_n;
     private javax.swing.JTextField txtApellidoN;
     private javax.swing.JTextField txtApellidoP;
+    private javax.swing.JTextField txtComentarios;
+    private javax.swing.JTextField txtComentariosN;
+    private javax.swing.JTextField txtEdadIngreso;
+    private javax.swing.JTextField txtEdadN;
     private javax.swing.JTextField txtFechaN;
     private javax.swing.JTextField txtFecha_Ingreso;
     private javax.swing.JTextField txtMotivoN;
@@ -846,8 +1246,9 @@ public void agregar(){
     private javax.swing.JTextField txtPassP;
     private javax.swing.JTextField txtPassPaciente;
     private javax.swing.JTextField txtRut;
+    private javax.swing.JTextField txtRutBuscar;
+    private javax.swing.JTextField txtRutBuscar1;
     private javax.swing.JTextField txtRutEliminar;
-    private javax.swing.JTextField txtRutN;
     private javax.swing.JTextField txtRutP;
     private javax.swing.JTextField txtRutPaciente;
     private javax.swing.JTextField txtrut_n;

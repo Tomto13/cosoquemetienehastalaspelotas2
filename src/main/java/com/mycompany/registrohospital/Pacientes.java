@@ -22,7 +22,7 @@ public class Pacientes {
     private String contrasena;
     private Integer id_usuario_fk;
 
-    public Pacientes(String rut, String nombre, String apellido, int edad, String motivo_consulta, String fecha, String pasillo, String estado, String contrasena) {
+    public Pacientes(String rut, String nombre, String apellido, int edad, String motivo_consulta, String fecha, String pasillo, String estado, String comentario, String contrasena) {
         this.rut = rut;
         this.nombre = nombre;
         this.apellido = apellido;

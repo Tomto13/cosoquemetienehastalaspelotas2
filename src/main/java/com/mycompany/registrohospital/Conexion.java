@@ -4,6 +4,8 @@
  */
 package main.java.com.mycompany.registrohospital;
 import java.sql.*;
+import GUI.Pantalla;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Legion
@@ -26,7 +28,7 @@ public class Conexion {
     
     
     //Se uso Chatgt para reutilizar un codigo antiguo, y adaptarlo a lo que necesito
-    //En esencia en el INSERT INTO para evitar ponerlos en un otrden erroneo
+    //En esencia en el INSERT INTO para evitar ponerlos en un orden erroneo
     public static void insertar(Pacientes pa){
         Connection con = conectar();
         PreparedStatement ps=null;
@@ -45,7 +47,6 @@ public class Conexion {
             ps.setString(9, pa.getComentarios());
             ps.setString(10, pa.getContrasena());
 
-            // 🔥 AQUI
             System.out.println("PASSWORD QUE LLEGA: " + pa.getContrasena());
 
             ps.executeUpdate();
@@ -58,7 +59,7 @@ public class Conexion {
                 if (ps != null){ ps.close();}    
                 if (con != null){con.close();}
             }catch(SQLException e){
-                System.out.println("Error al cerrar ña cnexion");
+                System.out.println("Error al cerrar la cnexion");
             }
         }
     }
@@ -83,41 +84,103 @@ public class Conexion {
     }
 }
     
-    // Se utulizo Chatgpt para adaptar codigo antiguo a uno utilizable para este 
-public static boolean actualizar(Pacientes pa) {
-    String sql = "UPDATE pacientes SET nombre=?, apellido=?, edad=?, motivo_consulta=?, "
-               + "fecha_ingreso=?, pasillo=?, estado=?, comentarios=?, contraseña=? "
-               + "WHERE rut=?";
-
-    try (Connection con = conectar();
+   
+    
+    public boolean puedeModificar(String rutPaciente) {
+    String sql = "SELECT pasillo FROM pacientes WHERE rut = ?";
+    
+    try (Connection con = Conexion.conectar();
          PreparedStatement ps = con.prepareStatement(sql)) {
+        
+        ps.setString(1, rutPaciente.trim());
+        ResultSet rs = ps.executeQuery();
+        
+        if (rs.next()) {
+            String pasilloPaciente = rs.getString("pasillo");
 
-        ps.setString(1, pa.getNombre());
-        ps.setString(2, pa.getApellido());
-        ps.setInt(3, pa.getEdad());
-        ps.setString(4, pa.getMotivo_consulta());
-        ps.setString(5, pa.getFecha());
-        ps.setString(6, pa.getPasillo());
-        ps.setString(7, pa.getEstado());
-        ps.setString(8, pa.getComentarios());
-        ps.setString(9, pa.getContrasena());       
-        ps.setString(10, pa.getRut()); // <- se actualiza por RUT
+            if (Pantalla.pasilloEncargado.equalsIgnoreCase("NINGUNO")) {
+                return true;
+            }
 
-        int filas = ps.executeUpdate();
-
-        if (filas > 0) {
-            System.out.println("Paciente actualizado correctamente");
-            return true;
-        } else {
-            System.out.println("No se encontró un paciente con ese RUT");
-            return false;
+            if (Pantalla.pasilloEncargado.equalsIgnoreCase(pasilloPaciente)) {
+                return true;
+            }
         }
 
     } catch (SQLException e) {
-        System.out.println("Error actualizando paciente: " + e.getMessage());
-        return false;
+        JOptionPane.showMessageDialog(null, "Error verificando pasillo: " + e.getMessage());
     }
-    }
-    
-    
+
+    return false;  
 }
+
+    public int LoginUsuario(String rut, String pass) {
+    int resultado = 0;
+
+    String sql = "SELECT * FROM usuarios WHERE rut = ? AND contraseña = ?";
+
+    try {
+        Connection con = Conexion.conectar();
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, rut.trim());
+        ps.setString(2, pass.trim());
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            resultado = 1;
+            Pantalla.pasilloEncargado = rs.getString("pasillo_asignado");
+        }
+
+        con.close();
+    } 
+    catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "ERROR al validar login: " + e.getMessage());
+    }
+
+    return resultado;
+}
+    public int LoginPaciente(String rut, String pass) {
+    int resultado = 0;
+
+    String sql = "SELECT * FROM pacientes WHERE rut = ? AND contraseña = ?";
+
+    try {
+        Connection con = Conexion.conectar();
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, rut.trim());
+        ps.setString(2, pass.trim());
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            resultado = 1;
+        }
+
+        con.close();
+    } 
+    catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "ERROR al validar login: " + e.getMessage());
+    }
+
+    return resultado;
+}
+    public ResultSet obtenerPacientePorRut(String rut) {
+    String sql = "SELECT rut, nombre, apellido, edad, motivo_consulta, fecha_ingreso, pasillo, estado, comentarios FROM pacientes WHERE rut = ?";
+
+    try {
+        Connection con = conectar();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, rut);
+        return ps.executeQuery(); 
+    } catch (Exception e) {
+        System.out.println("Error consultando paciente: " + e.getMessage());
+        return null;
+    }
+    }
+
+    
+ }
+
